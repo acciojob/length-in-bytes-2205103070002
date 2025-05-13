@@ -1,16 +1,73 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Byte Size Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
 
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+    <h2>Calculate Byte Size of a String</h2>
+    
+    <input type="text" id="inputString" placeholder="Enter your string here" />
+    <button onclick="calculateByteSize()">Calculate Byte Size</button>
+
+    <div id="result"></div>
+
+    <script>
+        // Function to calculate the byte size of a string
+        function byteSize(str) {
+            const blob = new Blob([str]);  // Create a Blob from the string
+            return blob.size;  // The 'size' property gives the byte size of the string
+        }
+
+        // Function to handle the button click event
+        function calculateByteSize() {
+            const inputString = document.getElementById('inputString').value;  // Get input string
+            const resultDiv = document.getElementById('result');  // Get result div
+
+            if (inputString === "") {
+                resultDiv.textContent = "Byte size: 0 (Empty string)";
+            } else {
+                const size = byteSize(inputString);  // Calculate byte size
+                resultDiv.textContent = `Byte size: ${size} bytes`;  // Display result
+            }
+        }
+    </script>
 
 </body>
-
 </html>
